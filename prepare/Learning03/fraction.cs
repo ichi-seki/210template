@@ -22,8 +22,20 @@ public class Fraction
         _buttom = buttom;
     }
 
-    public void SetTop(){}
-    public void SetButtom(){}
+    public void SetTop(int top)
+    {
+        _top = top;
+    }
+    public void SetButtom(int buttom)
+    {
+        if (buttom != 0)
+        {
+            _buttom = buttom;
+        } else
+        {
+            _buttom = 1;
+        }
+    }
 
     public int GetTop()
     {
