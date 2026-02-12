@@ -31,29 +31,43 @@ public class Journal
 
     public void Load()
     {
+        Console.Write("Enter the file name to load: ");
         string filename = Console.ReadLine();
         string[] lines = System.IO.File.ReadAllLines(filename);
         foreach (string line in lines)
         {
             string[] parts = line.Split(",");
+            Entry entry = new Entry ();
+            entry._date = parts[0];
+            entry._prompt = parts[1];
+            entry._text = parts[2];
+
+            _entries.Add(entry);
         }
     }
     public void Save()
     {
+        Console.Write("Give it a name to save: ");
         string filename = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            outputFile.WriteLine(_entries);
+            foreach (Entry entry in _entries)
+            {
+                outputFile.WriteLine(entry.SaveTxt());
+            }
+            
         }
+        Console.WriteLine($"{filename} is saved.");
     }
 
     public void Delete()
     {
+        Console.WriteLine("Which records do you want to delete? ");
         for (int i = 0; i < _entries.Count; i++)
-        {
-            Console.WriteLine("Which records do you want to delete? ");
-            Console.WriteLine($"{i + 1}. {_entries[i]}");
-            string remove = Console.ReadLine();
+        {           
+            Console.WriteLine($"{i + 1}. {_entries[i]}");           
+        }
+        string remove = Console.ReadLine();
             if (int.TryParse(remove, out int number))
             {
                 int index = number - 1;
@@ -67,7 +81,6 @@ public class Journal
                     Console.WriteLine("No such number.");
                 }
             }
-        }
     }
     public void Quit(){}
 }

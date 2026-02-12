@@ -9,4 +9,9 @@ public class Entry
         Console.WriteLine($"Date: {_date} - Prompt: {_prompt}");
         Console.WriteLine(_text);
     }
+
+    public string SaveTxt()
+    {
+        return $"{_date},{_prompt}, {_text}";
+    }
 }
