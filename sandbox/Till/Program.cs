@@ -13,6 +13,6 @@ class Program
 
         Till myTill = new Till();
         Console.Write("Fresh cash drawer cash on hand: ");
-        Console.WriteLine
+        Console.WriteLine()
     }
 }
