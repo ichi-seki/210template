@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 public class Word
 {
     private string _word;
@@ -11,14 +13,19 @@ public class Word
     public void Hidden(bool hidden)
     {
         _hidden = hidden;
-        if (_hidden == true)
-        {
-            _word = "___";
-        }
+    }
+
+    public bool IsHidden()
+    {
+        return _hidden;
     }
 
     public string Display()
     {
+        if (_hidden)
+        {
+            return "___";
+        }
         return _word;
     }
 }
